@@ -8,6 +8,6 @@ inputs:
     type: uri_file
     path: azureml:diabetesdevsasset:1
 environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest
-compute: diabetescompute
+compute: diabetescomputecluster
 experiment_name: diabetesexperiment
 description: "Train diabetes logistic regression model using Azure Machine Learning"
