@@ -1,3 +1,30 @@
+# name: Manually trigger an Azure Machine Learning job
+
+# on:
+#   workflow_dispatch:
+
+# jobs:
+#   train:
+#     runs-on: ubuntu-latest
+#     steps:
+#     - name: Check out repo
+#       uses: actions/checkout@v3
+
+#     - name: Install az ml extension
+#       run: az extension add -n ml -y
+
+#     - name: Azure login
+#       uses: azure/login@v1
+#       with:
+#         creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+#     - name: Submit AML job
+#       run: |
+#         az ml job create --file  src/job.yml \
+#           --resource-group mlopprojRG \
+#           --workspace-name mlopspace
+
+
 name: Manually trigger an Azure Machine Learning job
 
 on:
@@ -7,19 +34,29 @@ jobs:
   train:
     runs-on: ubuntu-latest
     steps:
-    - name: Check out repo
-      uses: actions/checkout@v3
+      # 1. Checkout repo
+      - name: Check out repo
+        uses: actions/checkout@v3
 
-    - name: Install az ml extension
-      run: az extension add -n ml -y
+      # 2. List files (debug: ensure job.yml exists)
+      - name: List repo files
+        run: ls -R
 
-    - name: Azure login
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+      # 3. Install Azure ML extension
+      - name: Install az ml extension
+        run: az extension add -n ml -y
 
-    - name: Submit AML job
-      run: |
-        az ml job create --file  src/job.yml \
-          --resource-group mlopprojRG \
-          --workspace-name mlopspace
+      # 4. Azure login
+      - name: Azure login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      # 5. Submit AML job
+      - name: Submit AML job
+        run: |
+          az ml job create \
+            --file src/job.yml \
+            --resource-group mlopprojRG \
+            --workspace-name mlopspace \
+            --debug
