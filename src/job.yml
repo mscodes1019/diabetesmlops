@@ -12,4 +12,4 @@ inputs:
 environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest
 compute: diabetescompute
 experiment_name: diabetesexperiment
-description: 
+description: "Train diabetes logistic regression model using AML"
