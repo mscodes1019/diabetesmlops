@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/MonsuratAyinde/Desktop/mlops/mlruns/0/01627ecfb29a4500b39aad32ff1fb28d/artifacts
+end_time: 1758353101213
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 01627ecfb29a4500b39aad32ff1fb28d
+run_name: polite-sponge-641
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1758353082400
+status: 3
+tags: []
+user_id: MonsuratAyinde

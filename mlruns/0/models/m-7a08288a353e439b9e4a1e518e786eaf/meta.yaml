@@ -1,0 +1,10 @@
+artifact_location: file:///C:/Users/MonsuratAyinde/Desktop/mlops/mlruns/0/models/m-7a08288a353e439b9e4a1e518e786eaf/artifacts
+creation_timestamp: 1758353082967
+experiment_id: '0'
+last_updated_timestamp: 1758353097565
+model_id: m-7a08288a353e439b9e4a1e518e786eaf
+model_type: null
+name: model
+source_run_id: 01627ecfb29a4500b39aad32ff1fb28d
+status: 2
+status_message: null
