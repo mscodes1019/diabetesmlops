@@ -164,6 +164,13 @@ def train_model(reg_rate, X_train, y_train):
     return model
 
 
+# def parse_args():
+#     parser = argparse.ArgumentParser()
+#     parser.add_argument("--training_data", type=str, required=True,
+#                         help="Path to training data (CSV file or folder containing CSVs)")
+#     parser.add_argument("--reg_rate", type=float, default=0.01,
+#                         help="Regularization rate (inverse of C in LogisticRegression)")
+#     return parser.parse_args()
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--training_data", type=str, required=True,
@@ -171,6 +178,7 @@ def parse_args():
     parser.add_argument("--reg_rate", type=float, default=0.01,
                         help="Regularization rate (inverse of C in LogisticRegression)")
     return parser.parse_args()
+
 
 
 if __name__ == "__main__":
