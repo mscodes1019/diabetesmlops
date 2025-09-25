@@ -1,0 +1,46 @@
+name: Train Diabetes Model
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  experiment:
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Log in to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Train with dev dataset
+        run: |
+          az ml job create \
+            --file jobproddev.yml \
+            --resource-group mlopprojRG \
+            --workspace-name mlopspace \
+            --set inputs.data=azureml:diabetesdevsasset
+
+  production:
+    runs-on: ubuntu-latest
+    environment: prod
+    needs: experiment
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Log in to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Train with prod dataset
+        run: |
+          az ml job create \
+            --file jobproddev.yml \
+            --resource-group mlopprojRG \
+            --workspace-name mlopspace \
+            --set inputs.data=azureml:diabetes-prod-folder:1
