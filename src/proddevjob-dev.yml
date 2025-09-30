@@ -1,0 +1,14 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
+type: command
+code: model
+command: >
+  python train.py --training_data ${{inputs.training_data}} --reg_rate 0.01
+
+inputs:
+  training_data:
+    type: uri   # generic type: can be file or folder, overridden in workflow
+
+environment: azureml:AzureML-sklearn-1.0-ubuntu20.04-py38-cpu@latest
+compute: diabetescomputecluster
+experiment_name: diabetesexperiment
+description: "Train diabetes logistic regression model using Azure Machine Learning"

@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
+  workflow_dispatch:  # allows manual runs
 
 jobs:
   experiment:
@@ -21,10 +21,9 @@ jobs:
       - name: Train with dev dataset
         run: |
           az ml job create \
-            --file src/proddevjob.yml \
+            --file src/proddevjob-dev.yml \
             --resource-group mlopprojRG \
-            --workspace-name mlopspace \
-            --set inputs.data=azureml:diabetesdevsasset
+            --workspace-name mlopspace
 
   production:
     runs-on: ubuntu-latest
@@ -41,7 +40,6 @@ jobs:
       - name: Train with prod dataset
         run: |
           az ml job create \
-            --file src/proddevjob.yml \
+            --file src/proddevjob-prod.yml \
             --resource-group mlopprojRG \
-            --workspace-name mlopspace \
-            --set inputs.data=azureml:diabetes-prod-folder:1
+            --workspace-name mlopspace
