@@ -20,7 +20,7 @@ jobs:
       - name: Train with dev dataset
         run: |
           az ml job create \
-            --file jobproddev.yml \
+            --file src/jobproddev.yml \
             --resource-group mlopprojRG \
             --workspace-name mlopspace \
             --set inputs.data=azureml:diabetesdevsasset
@@ -40,7 +40,7 @@ jobs:
       - name: Train with prod dataset
         run: |
           az ml job create \
-            --file jobproddev.yml \
+            --file src/jobproddev.yml \
             --resource-group mlopprojRG \
             --workspace-name mlopspace \
             --set inputs.data=azureml:diabetes-prod-folder:1
