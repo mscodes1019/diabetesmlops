@@ -6,7 +6,7 @@ command: >
 
 inputs:
   training_data:
-    type: uri   # generic type: can be file or folder, overridden in workflow
+    type: uri_file   # generic type: can be file or folder, overridden in workflow
 
 environment: azureml:AzureML-sklearn-1.0-ubuntu20.04-py38-cpu@latest
 compute: diabetescomputecluster
