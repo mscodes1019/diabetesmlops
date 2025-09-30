@@ -8,7 +8,7 @@ on:
 jobs:
   experiment:
     runs-on: ubuntu-latest
-    environment: dev
+    environment: development
     steps:
       - uses: actions/checkout@v3
 
@@ -27,7 +27,7 @@ jobs:
 
   production:
     runs-on: ubuntu-latest
-    environment: prod
+    environment: production
     needs: experiment
     steps:
       - uses: actions/checkout@v3
