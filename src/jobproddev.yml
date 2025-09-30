@@ -1,8 +1,15 @@
-command: >
-  python train.py --data ${{inputs.data}}
-inputs:
-  data:
-    type: uri_folder   # changed from uri_file to uri_folder
-environment: azureml:AzureML-sklearn-1.0-ubuntu20.04-py38-cpu@latest
-compute: diabetescomputecluster
-experiment_name: diabetesexperiment
+- name: Train with dev dataset
+  run: |
+    az ml job create \
+      --file src/jobproddev.yml \
+      --resource-group mlopprojRG \
+      --workspace-name mlopspace \
+      --set inputs.data=azureml:diabetesdevsasset
+
+- name: Train with prod dataset
+  run: |
+    az ml job create \
+      --file src/jobproddev.yml \
+      --resource-group mlopprojRG \
+      --workspace-name mlopspace \
+      --set inputs.data=azureml:diabetes-prod-folder:1
